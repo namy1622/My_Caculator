@@ -12,6 +12,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:background="@drawable/border_show"
         android:layout_weight="2"
         android:weightSum="2"
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <TextView
+            android:id="@+id/txt_input"
             android:layout_weight="1.2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,6 +40,7 @@
             android:layout_height="2dp"
             android:background="#ffff"/>
         <TextView
+            android:id="@+id/txt_result"
             android:layout_width="match_parent"
             android:layout_weight="0.8"
             android:layout_height="0dp"
@@ -91,18 +94,22 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/btn_CE"
                 style="@style/actionButton"
                 android:text="CE"
                 />
             <Button
+                android:id="@+id/btn_open_left"
                 style="@style/actionButton"
                 android:text="("
                 />
             <Button
+                android:id="@+id/btn_close_right"
                 style="@style/actionButton"
                 android:text=")"
                 />
             <Button
+                android:id="@+id/btn_divide"
                 style="@style/actionButton"
                 android:text="/"
                />
@@ -115,19 +122,23 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/btn_7"
                 style="@style/actionNumber"
 
                 android:text="7"
                 />
             <Button
+                android:id="@+id/btn_8"
                 style="@style/actionNumber"
                 android:text="8"
                 />
             <Button
+                android:id="@+id/btn_9"
                 style="@style/actionNumber"
                 android:text="9"
                />
             <Button
+                android:id="@+id/btn_multi"
                 style="@style/actionButton"
                 android:text="X"
                 />
@@ -140,18 +151,22 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/btn_4"
                 style="@style/actionNumber"
                 android:text="4"
                 />
             <Button
+                android:id="@+id/btn_5"
                 style="@style/actionNumber"
                 android:text="5"
                 />
             <Button
+                android:id="@+id/btn_6"
                 style="@style/actionNumber"
                 android:text="6"
                 android:textStyle="bold"/>
             <Button
+                android:id="@+id/btn_minus"
                 style="@style/actionButton"
                 android:text="-"
                 />
@@ -164,18 +179,22 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/btn_1"
                 style="@style/actionNumber"
                 android:text="1"
                 />
             <Button
+                android:id="@+id/btn_2"
                 style="@style/actionNumber"
                 android:text="2"
                 />
             <Button
+                android:id="@+id/btn_3"
                 style="@style/actionNumber"
                 android:text="3"
                 />
             <Button
+                android:id="@+id/btn_plus"
                 style="@style/actionButton"
                 android:text="+"
                />
@@ -188,18 +207,22 @@
             android:layout_weight="1">
 
             <Button
+                android:id="@+id/btn_0"
                 style="@style/actionNumber"
                 android:text="0"
                 />
             <Button
+                android:id="@+id/btn_dot"
                 style="@style/actionNumber"
                 android:text="."
                 />
 
             <ImageButton
+                android:id="@+id/btn_delete"
                 style="@style/actionNumber"
                 android:src="@drawable/arrow_left"/>
             <Button
+                android:id="@+id/btn_equal"
                 style="@style/actionButton"
 
                 android:text="="
