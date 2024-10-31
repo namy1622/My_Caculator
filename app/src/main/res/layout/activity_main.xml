@@ -62,24 +62,30 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
 
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         >
         <Button
+            android:id="@+id/btn_equation"
             style="@style/funcButton"
-            android:text="Chuc nang"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:text="Phuong trinh"
             />
 
         <Button
+            android:id="@+id/btn_convert"
             style="@style/funcButton"
-            android:text="Chuc nang"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:text="Quy doi"
             />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btn"
+        android:id="@+id/layout_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -229,6 +235,151 @@
                 />
         </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_equation"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+        <TableLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+
+                android:weightSum="4">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="a^2"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="a^b"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="log(a,b)"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="ln"/>
+            </TableRow>
+            <TableRow
+                android:weightSum="4">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="sin"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="cos"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="tan"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:text="cot"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Phuong trinh bac 2"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Phuong trinh bac 3"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Chu vi H.Vuong"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Dien Tich H.Vuong"/>
+            </TableRow>
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Chu vi HCN"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Dien Tich HCN"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Chu vi H.Trong"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="8dp"
+
+                    android:layout_weight="1"
+                    android:text="Dien Tich H.Tron"/>
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_convert"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="35sp"
+            android:text="Day la Layout Quy Doi"/>
 
     </LinearLayout>
 

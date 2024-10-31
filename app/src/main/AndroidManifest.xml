@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Caculator"
         tools:targetApi="31">
         <activity
+            android:name=".Equation"
+            android:exported="false" />
+        <activity
+            android:name=".Convert"
+            android:exported="false" />
+        <activity
             android:name=".Splash"
             android:exported="false" />
         <activity

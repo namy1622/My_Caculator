@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:background="@drawable/border_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Convert">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableLayout
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Phuong trinh bac 2"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Phuong trinh bac 3"/>
+            </TableRow>
+            <TableRow
+                android:weightSum="4">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="sin"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="cos"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="tan"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="cot"/>
+            </TableRow>
+
+            <TableRow
+
+                android:weightSum="4">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="a^2"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="a^b"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="log(a,b)"/>
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="ln"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Chu vi H.Vuong"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Dien Tich H.Vuong"/>
+            </TableRow>
+            <TableRow
+                android:weightSum="2">
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Chu vi HCN"/>
+
+                <Button
+                    style="@style/btn_equation"
+                    android:layout_margin="10dp"
+
+                    android:layout_weight="1"
+                    android:text="Dien Tich HCN"/>
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
