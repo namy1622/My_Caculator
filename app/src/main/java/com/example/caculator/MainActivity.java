@@ -1,9 +1,12 @@
 package com.example.caculator;
 
+import static java.nio.file.Files.find;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private String currentInput = "";
     private List<String> expression = new ArrayList<>(); // Lưu biểu thức toán học
 
+
+    private  ImageButton ibtn_return_home ;
 //    Button btn_0;
 //    Button btn_equal;
 //    TextView txt_input;
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         btn_euqation = findViewById(R.id.btn_equation);
 
         btn_convert = findViewById(R.id.btn_convert);
+
+        ibtn_return_home = findViewById(R.id.btn_return_home);
 //        //-------
 //
 //        btn_0 = (Button)  findViewById(R.id.btn_0);
@@ -298,6 +305,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        ibtn_return_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check_equation == false){
+                    // Ẩn Layout 1 và hiện Layout 2
+                    ll_number.setVisibility(View.GONE);
+                    ll_convert.setVisibility(View.GONE);
+                    ll_euation.setVisibility(View.VISIBLE);
+                    check_equation = true;
+                }
+                else{
+                    // Ẩn Layout 2 và hiện Layout 1
+                    ll_euation.setVisibility(View.GONE);
+                    ll_convert.setVisibility(View.GONE);
+                    ll_number.setVisibility(View.VISIBLE);
+                    check_equation = false;
+                }
+            }
+        });
+
+
+
     }
     public void Change_Convert(){
         btn_convert.setOnClickListener(new View.OnClickListener() {
