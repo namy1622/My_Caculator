@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Ánh xạ View
         txtInput = findViewById(R.id.txt_input);
+
+
         txtResult = findViewById(R.id.txt_result);
         mapping();
         // func thay doi layout Equation, Convert
@@ -86,11 +88,16 @@ public class MainActivity extends AppCompatActivity {
         int[] numberIds = {
                 R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3,
                 R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7,
-                R.id.btn_8, R.id.btn_9, R.id.btn_dot
+                R.id.btn_8, R.id.btn_9, R.id.btn_dot,
+                R.id.btn_0_fun,R.id.btn_1_fun,R.id.btn_2_fun,
+                R.id.btn_3_fun,R.id.btn_4_fun,R.id.btn_5_fun,
+                R.id.btn_6_fun,R.id.btn_7_fun,R.id.btn_8_fun,
+                R.id.btn_9_fun,R.id.btn_9_fun,R.id.btn_dot_fun
         };
 
         int[] parenthesisIds = {
-                R.id.btn_open_left, R.id.btn_close_right
+                R.id.btn_open_left, R.id.btn_close_right,
+                R.id.btn_open_left_fun,R.id.btn_close_right_fun
         };
 
         // Lắng nghe số và dấu "."
@@ -132,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
     private void setOperatorClickListeners() {
         int[] operatorIds = {
                 R.id.btn_plus, R.id.btn_minus,
-                R.id.btn_multi, R.id.btn_divide
+                R.id.btn_multi, R.id.btn_divide,
+                R.id.btn_plus_fun,R.id.btn_minus_fun,
+                R.id.btn_multi_fun,R.id.btn_divide_fun
         };
 
         View.OnClickListener listener = view -> {
@@ -164,9 +173,29 @@ public class MainActivity extends AppCompatActivity {
                 txtResult.setText("Error");
             }
         });
+        findViewById(R.id.btn_equal_fun).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            try {
+                double result = evaluateExpression(expression);
+                txtResult.setText(String.valueOf(result));
+                isResultDisplayed = true; // Đánh dấu đã hiển thị kết quả
+            } catch (Exception e) {
+                txtResult.setText("Error");
+            }
+        });
+
 
 
         findViewById(R.id.btn_CE).setOnClickListener(view -> {
+            currentInput = "";
+            expression.clear();
+            txtInput.setText("");
+            txtResult.setText("Result");
+        });
+        findViewById(R.id.btn_CE_fun).setOnClickListener(view -> {
             currentInput = "";
             expression.clear();
             txtInput.setText("");
@@ -190,8 +219,65 @@ public class MainActivity extends AppCompatActivity {
                 // Cập nhật lại giao diện ngay lập tức
                 txtInput.setText(formatExpression(expression) + currentInput);
             }
+
+
         });
 
+        findViewById(R.id.btn_delete_fun).setOnClickListener(view -> {
+            if (isResultDisplayed) {
+                // Nếu đang hiển thị kết quả, trở lại trạng thái chỉnh sửa biểu thức cũ
+                isResultDisplayed = false;
+                //txtResult.setText("Result");
+                txtInput.setText(formatExpression(expression)); // Hiển thị lại biểu thức
+            } else {
+                if (!currentInput.isEmpty()) {
+                    // Xóa ký tự cuối cùng trong currentInput
+                    currentInput = currentInput.substring(0, currentInput.length() - 1);
+                } else if (!expression.isEmpty()) {
+                    // Nếu currentInput rỗng, xóa phần tử cuối cùng trong biểu thức
+                    expression.remove(expression.size() - 1);
+                }
+                // Cập nhật lại giao diện ngay lập tức
+                txtInput.setText(formatExpression(expression) + currentInput);
+            }
+
+
+        });
+
+        findViewById(R.id.btn_pow2).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Thêm "²" vào currentInput nhưng không tính toán ngay
+                currentInput += "²";
+                txtInput.setText(txtInput.getText().toString() + "²");
+            }
+        });
+
+        findViewById(R.id.btn_pow_ab).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Thêm cơ số vào biểu thức
+                expression.add(currentInput);
+                currentInput = "";
+                // Thêm toán tử "^"
+                expression.add("^");
+                txtInput.setText(txtInput.getText().toString() + " ^ ");
+            }
+        });
+
+//        findViewById(R.id.btn_log_ab).setOnClickListener(view -> {
+//            if (!currentInput.isEmpty()) {
+//                // Thêm cơ số vào biểu thức
+//                expression.add(currentInput);
+//                currentInput = "";
+//                // Thêm toán tử log
+//                expression.add("log");
+//                txtInput.setText(txtInput.getText().toString() + " log ");
+//            }
+//        });
+
+        findViewById(R.id.btn_ln).setOnClickListener(view -> {
+            currentInput = "ln("; // Bắt đầu nhập với "ln("
+            txtInput.setText(currentInput ); // Hiển thị "ln("
+        });
 
     }
 
@@ -203,7 +289,6 @@ public class MainActivity extends AppCompatActivity {
         List<String> postfix = convertToPostfix(expression);
         return evaluatePostfix(postfix);
     }
-
     private List<String> convertToPostfix(List<String> expression) {
         List<String> postfix = new ArrayList<>();
         Stack<String> stack = new Stack<>();
@@ -217,8 +302,35 @@ public class MainActivity extends AppCompatActivity {
                 while (!stack.isEmpty() && !stack.peek().equals("(")) {
                     postfix.add(stack.pop());
                 }
-                stack.pop();
+                // Lấy "(" ra khỏi ngăn xếp
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else if (token.endsWith("²")) {
+                // Nếu token là toán tử bình phương, xử lý ngay
+                String base = token.substring(0, token.length() - 1); // Lấy phần trước "²"
+                if (isNumeric(base)) {
+                    // Tính toán bình phương và thêm kết quả vào postfix
+                    double squared = Math.pow(Double.parseDouble(base), 2);
+                    postfix.add(String.valueOf(squared));
+                } else {
+                    throw new IllegalArgumentException("Token không hợp lệ với ²: " + token);
+                }
+            }else if(token.equals("ln")) {
+                // Xử lý hàm log tự nhiên (ln)
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(token)) {
+                    postfix.add(stack.pop());
+                }
+                stack.push(token); // Đẩy "ln" vào stack
+
+            }else if (token.equals("^")) {
+                // Toán tử mũ, xử lý độ ưu tiên cao hơn các phép nhân và chia
+                while (!stack.isEmpty() && precedence(stack.peek()) > precedence(token)) {
+                    postfix.add(stack.pop());
+                }
+                stack.push(token);
             } else {
+                // Xử lý các toán tử
                 while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(token)) {
                     postfix.add(stack.pop());
                 }
@@ -226,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // Lấy các toán tử còn lại trong ngăn xếp ra
         while (!stack.isEmpty()) {
             postfix.add(stack.pop());
         }
@@ -240,21 +353,36 @@ public class MainActivity extends AppCompatActivity {
             if (isNumeric(token)) {
                 stack.push(Double.parseDouble(token));
             } else {
-                double operand2 = stack.pop();
-                double operand1 = stack.pop();
-                switch (token) {
-                    case "+":
-                        stack.push(operand1 + operand2);
-                        break;
-                    case "-":
-                        stack.push(operand1 - operand2);
-                        break;
-                    case "X":
-                        stack.push(operand1 * operand2);
-                        break;
-                    case "/":
-                        stack.push(operand1 / operand2);
-                        break;
+                // Hàm log và ln chỉ cần một toán hạng
+                if (token.equals("ln(")) {
+                    double operand = stack.pop();
+                    stack.push(Math.log(operand)); // Tính log tự nhiên (ln)
+//                } else if (token.equals("log")) {
+//                    double operand2 = stack.pop(); // Lấy cơ số
+//                    double operand1 = stack.pop(); // Lấy số
+//                    stack.push(Math.log(operand1) / Math.log(operand2)); // Tính log_cơ_số(operand1)
+//                }
+               } else {
+                    // Các toán tử khác cần hai toán hạng
+                    double operand2 = stack.pop();
+                    double operand1 = stack.pop();
+                    switch (token) {
+                        case "+":
+                            stack.push(operand1 + operand2);
+                            break;
+                        case "-":
+                            stack.push(operand1 - operand2);
+                            break;
+                        case "X":
+                            stack.push(operand1 * operand2);
+                            break;
+                        case "/":
+                            stack.push(operand1 / operand2);
+                            break;
+                        case "^":
+                            stack.push(Math.pow(operand1, operand2)); // Tính toán a^b
+                            break;
+                    }
                 }
             }
         }
@@ -278,10 +406,17 @@ public class MainActivity extends AppCompatActivity {
             case "X":
             case "/":
                 return 2;
+            case "^":
+            case "ln":
+            case "log":
+                return 3; // Độ ưu tiên cao nhất
             default:
                 return 0;
         }
     }
+
+
+
 
     //=============================================================
     public void Change_Equation(){
