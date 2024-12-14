@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //----
     private LinearLayout ll_number;
     private LinearLayout ll_euation;
-    private LinearLayout ll_convert;
+//    private LinearLayout ll_convert;
     boolean  check_equation = false;
     boolean check_convert = false;
     private Button btn_euqation;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mapping();
         // func thay doi layout Equation, Convert
         Change_Equation();
-        Change_Convert();
+//        Change_Convert();
         // Gán sự kiện cho các nút
         setNumberClickListeners();
         setOperatorClickListeners();
@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
     public  void mapping(){
         ll_number = findViewById(R.id.layout_number);
         ll_euation = findViewById(R.id.layout_equation);
-        ll_convert = findViewById(R.id.layout_convert);
+//        ll_convert = findViewById(R.id.layout_convert);
 
         btn_euqation = findViewById(R.id.btn_equation);
 
-        btn_convert = findViewById(R.id.btn_convert);
+//        btn_convert = findViewById(R.id.btn_convert);
 
         ibtn_return_home = findViewById(R.id.btn_return_home);
 //        //-------
@@ -530,14 +530,14 @@ public class MainActivity extends AppCompatActivity {
                 if(check_equation == false){
                     // Ẩn Layout 1 và hiện Layout 2
                     ll_number.setVisibility(View.GONE);
-                    ll_convert.setVisibility(View.GONE);
+//                    ll_convert.setVisibility(View.GONE);
                     ll_euation.setVisibility(View.VISIBLE);
                     check_equation = true;
                 }
                 else{
                     // Ẩn Layout 2 và hiện Layout 1
                     ll_euation.setVisibility(View.GONE);
-                    ll_convert.setVisibility(View.GONE);
+//                    ll_convert.setVisibility(View.GONE);
                     ll_number.setVisibility(View.VISIBLE);
                     check_equation = false;
                 }
@@ -551,14 +551,14 @@ public class MainActivity extends AppCompatActivity {
                 if(check_equation == false){
                     // Ẩn Layout 1 và hiện Layout 2
                     ll_number.setVisibility(View.GONE);
-                    ll_convert.setVisibility(View.GONE);
+//                    ll_convert.setVisibility(View.GONE);
                     ll_euation.setVisibility(View.VISIBLE);
                     check_equation = true;
                 }
                 else{
                     // Ẩn Layout 2 và hiện Layout 1
                     ll_euation.setVisibility(View.GONE);
-                    ll_convert.setVisibility(View.GONE);
+//                    ll_convert.setVisibility(View.GONE);
                     ll_number.setVisibility(View.VISIBLE);
                     check_equation = false;
                 }
@@ -568,24 +568,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void Change_Convert(){
-        btn_convert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(check_convert == false){
-                    ll_convert.setVisibility(View.VISIBLE);
-                    ll_euation.setVisibility(View.GONE);
-                    ll_number.setVisibility(View.GONE);
-                    check_convert = true;
-                }
-                else {
-                    ll_convert.setVisibility(View.GONE);
-                    ll_euation.setVisibility(View.GONE);
-                    ll_number.setVisibility(View.VISIBLE);
-                    check_convert = false;
-                }
-            }
-        });
-    }
+//    public void Change_Convert(){
+//        btn_convert.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(check_convert == false){
+//                    ll_convert.setVisibility(View.VISIBLE);
+//                    ll_euation.setVisibility(View.GONE);
+//                    ll_number.setVisibility(View.GONE);
+//                    check_convert = true;
+//                }
+//                else {
+//                    ll_convert.setVisibility(View.GONE);
+//                    ll_euation.setVisibility(View.GONE);
+//                    ll_number.setVisibility(View.VISIBLE);
+//                    check_convert = false;
+//                }
+//            }
+//        });
+//    }
 
 }
