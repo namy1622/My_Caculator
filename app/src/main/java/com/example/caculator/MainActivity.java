@@ -1,7 +1,5 @@
 package com.example.caculator;
 
-import static java.nio.file.Files.find;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
@@ -79,10 +77,7 @@ public class MainActivity extends AppCompatActivity {
 //        txt_result = (TextView) findViewById(R.id.txt_result);
     }
 
-
-
     private boolean isResultDisplayed = false; // Biến kiểm tra nếu đang hiển thị kết quả
-
 
     private void setNumberClickListeners() {
         int[] numberIds = {
@@ -99,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 R.id.btn_open_left, R.id.btn_close_right,
                 R.id.btn_open_left_fun,R.id.btn_close_right_fun
         };
-
         // Lắng nghe số và dấu "."
         View.OnClickListener numberListener = view -> {
             if (isResultDisplayed) {
@@ -112,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
             currentInput += button.getText().toString();
             txtInput.setText(txtInput.getText().toString() + button.getText().toString());
         };
-
-
         // Lắng nghe ngoặc
         View.OnClickListener parenthesisListener = view -> {
             Button button = (Button) view;
@@ -129,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         for (int id : numberIds) {
             findViewById(id).setOnClickListener(numberListener);
         }
-
         // Gán sự kiện cho ngoặc
         for (int id : parenthesisIds) {
             findViewById(id).setOnClickListener(parenthesisListener);
@@ -182,8 +173,10 @@ public class MainActivity extends AppCompatActivity {
                 double result = evaluateExpression(expression);
                 txtResult.setText(String.valueOf(result));
                 isResultDisplayed = true; // Đánh dấu đã hiển thị kết quả
+            } catch (IllegalArgumentException e) {
+                txtResult.setText("Error: " + e.getMessage());
             } catch (Exception e) {
-                txtResult.setText("Error");
+                txtResult.setText("Error: Invalid Expression");
             }
         });
 
@@ -219,8 +212,6 @@ public class MainActivity extends AppCompatActivity {
                 // Cập nhật lại giao diện ngay lập tức
                 txtInput.setText(formatExpression(expression) + currentInput);
             }
-
-
         });
 
         findViewById(R.id.btn_delete_fun).setOnClickListener(view -> {
@@ -240,8 +231,6 @@ public class MainActivity extends AppCompatActivity {
                 // Cập nhật lại giao diện ngay lập tức
                 txtInput.setText(formatExpression(expression) + currentInput);
             }
-
-
         });
 
         findViewById(R.id.btn_pow2).setOnClickListener(view -> {
@@ -263,21 +252,100 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.btn_log_ab).setOnClickListener(view -> {
-//            if (!currentInput.isEmpty()) {
-//                // Thêm cơ số vào biểu thức
-//                expression.add(currentInput);
-//                currentInput = "";
-//                // Thêm toán tử log
-//                expression.add("log");
-//                txtInput.setText(txtInput.getText().toString() + " log ");
-//            }
-//        });
+        findViewById(R.id.btn_log_ab).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Nếu có giá trị đang nhập, thêm vào biểu thức
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Thêm toán tử log và yêu cầu nhập b
+            expression.add("log");
+            txtInput.setText(txtInput.getText().toString() + " log ");
+        });
 
         findViewById(R.id.btn_ln).setOnClickListener(view -> {
-            currentInput = "ln("; // Bắt đầu nhập với "ln("
-            txtInput.setText(currentInput ); // Hiển thị "ln("
+            if (!currentInput.isEmpty()) {
+                // Nếu có giá trị đang nhập, thêm vào biểu thức
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            expression.add("ln"); // Thêm "ln" vào biểu thức
+            txtInput.setText(txtInput.getText().toString() + "ln("); // Hiển thị "ln("
         });
+
+        findViewById(R.id.btn_can2).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Nếu đã có đầu vào, thêm số đó vào biểu thức trước
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Thêm toán tử √ và chờ số tiếp theo
+            expression.add("sqrt");
+            txtInput.setText(txtInput.getText().toString() + " √");
+        });
+
+        findViewById(R.id.btn_sin).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                expression.add(currentInput);
+                currentInput = "";
+            }
+// Dù `currentInput` rỗng, vẫn cho phép thêm toán tử
+            expression.add("sin");
+
+            txtInput.setText(txtInput.getText().toString() + " sin");
+        });
+        findViewById(R.id.btn_cot).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Nếu đã có đầu vào, thêm số đó vào biểu thức trước
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Dù currentInput rỗng, vẫn cho phép thêm toán tử cot
+            expression.add("cot");
+            txtInput.setText(txtInput.getText().toString() + " cot");
+        });
+
+        findViewById(R.id.btn_tan).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Nếu đã có đầu vào, thêm số đó vào biểu thức trước
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Dù currentInput rỗng, vẫn cho phép thêm toán tử tan
+            expression.add("tan");
+            txtInput.setText(txtInput.getText().toString() + " tan");
+        });
+
+        findViewById(R.id.btn_cos).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                // Nếu đã có đầu vào, thêm số đó vào biểu thức trước
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Dù currentInput rỗng, vẫn cho phép thêm toán tử cos
+            expression.add("cos");
+            txtInput.setText(txtInput.getText().toString() + " cos");
+        });
+        findViewById(R.id.btn_percent).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Thêm phần trăm vào biểu thức
+            expression.add("%");
+            txtInput.setText(txtInput.getText().toString() + " %");
+        });
+        findViewById(R.id.btn_fact).setOnClickListener(view -> {
+            if (!currentInput.isEmpty()) {
+                expression.add(currentInput);
+                currentInput = "";
+            }
+            // Thêm giai thừa vào biểu thức
+            expression.add("!");
+            txtInput.setText(txtInput.getText().toString() + " !");
+        });
+
+
 
     }
 
@@ -302,35 +370,19 @@ public class MainActivity extends AppCompatActivity {
                 while (!stack.isEmpty() && !stack.peek().equals("(")) {
                     postfix.add(stack.pop());
                 }
-                // Lấy "(" ra khỏi ngăn xếp
                 if (!stack.isEmpty()) {
                     stack.pop();
                 }
-            } else if (token.endsWith("²")) {
-                // Nếu token là toán tử bình phương, xử lý ngay
-                String base = token.substring(0, token.length() - 1); // Lấy phần trước "²"
-                if (isNumeric(base)) {
-                    // Tính toán bình phương và thêm kết quả vào postfix
-                    double squared = Math.pow(Double.parseDouble(base), 2);
-                    postfix.add(String.valueOf(squared));
-                } else {
-                    throw new IllegalArgumentException("Token không hợp lệ với ²: " + token);
-                }
-            }else if(token.equals("ln")) {
-                // Xử lý hàm log tự nhiên (ln)
-                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(token)) {
-                    postfix.add(stack.pop());
-                }
-                stack.push(token); // Đẩy "ln" vào stack
-
-            }else if (token.equals("^")) {
-                // Toán tử mũ, xử lý độ ưu tiên cao hơn các phép nhân và chia
-                while (!stack.isEmpty() && precedence(stack.peek()) > precedence(token)) {
-                    postfix.add(stack.pop());
-                }
-                stack.push(token);
-            } else {
-                // Xử lý các toán tử
+            }
+            else if (token.equals("sin") || token.equals("cos") || token.equals("tan") || token.equals("cot") || token.equals("sqrt")) {
+                // Các toán tử đơn như sqrt, sin, cos, cot, tan thêm trực tiếp vào postfix
+                postfix.add(token);
+            }
+            else if (token.equals("%") || token.equals("!")) {
+                // Các toán tử phần trăm và giai thừa cũng được thêm vào postfix
+                postfix.add(token);
+            }
+            else {
                 while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(token)) {
                     postfix.add(stack.pop());
                 }
@@ -338,7 +390,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // Lấy các toán tử còn lại trong ngăn xếp ra
         while (!stack.isEmpty()) {
             postfix.add(stack.pop());
         }
@@ -346,74 +397,127 @@ public class MainActivity extends AppCompatActivity {
         return postfix;
     }
 
+    // Độ ưu tiên của các toán tử
+    private int precedence(String operator) {
+        switch (operator) {
+            case "+":
+            case "-":
+                return 1;
+            case "*":
+            case "/":
+                return 2;
+            case "^":
+            case "log":
+            case "ln":
+            case "sqrt":
+            case "cot":
+            case "tan":
+            case "cos": // Các hàm toán học đơn có độ ưu tiên cao
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
+
+
+
     private double evaluatePostfix(List<String> postfix) {
         Stack<Double> stack = new Stack<>();
 
         for (String token : postfix) {
             if (isNumeric(token)) {
                 stack.push(Double.parseDouble(token));
-            } else {
-                // Hàm log và ln chỉ cần một toán hạng
-                if (token.equals("ln(")) {
-                    double operand = stack.pop();
-                    stack.push(Math.log(operand)); // Tính log tự nhiên (ln)
-//                } else if (token.equals("log")) {
-//                    double operand2 = stack.pop(); // Lấy cơ số
-//                    double operand1 = stack.pop(); // Lấy số
-//                    stack.push(Math.log(operand1) / Math.log(operand2)); // Tính log_cơ_số(operand1)
-//                }
-               } else {
-                    // Các toán tử khác cần hai toán hạng
-                    double operand2 = stack.pop();
-                    double operand1 = stack.pop();
-                    switch (token) {
-                        case "+":
-                            stack.push(operand1 + operand2);
-                            break;
-                        case "-":
-                            stack.push(operand1 - operand2);
-                            break;
-                        case "X":
-                            stack.push(operand1 * operand2);
-                            break;
-                        case "/":
-                            stack.push(operand1 / operand2);
-                            break;
-                        case "^":
-                            stack.push(Math.pow(operand1, operand2)); // Tính toán a^b
-                            break;
-                    }
+            } else if (token.equals("+")) {
+                stack.push(stack.pop() + stack.pop());
+            } else if (token.equals("-")) {
+                double b = stack.pop();
+                double a = stack.pop();
+                stack.push(a - b);
+            } else if (token.equals("X")) {
+                stack.push(stack.pop() * stack.pop());
+            } else if (token.equals("/")) {
+                double b = stack.pop();
+                double a = stack.pop();
+                stack.push(a / b);
+            } else if (token.equals("^")) {
+                double b = stack.pop();
+                double a = stack.pop();
+                stack.push(Math.pow(a, b));
+            } else if (token.equals("log")) {
+                double b = stack.pop();
+                double a = stack.pop();
+                if (a <= 0 || b <= 0 || a == 1) {
+                    throw new IllegalArgumentException("Invalid input for log(a, b)");
                 }
+                stack.push(Math.log(b) / Math.log(a)); // Tính log(a, b)
+            } else if (token.equals("ln")) {
+                double a = stack.pop();
+                if (a <= 0) {
+                    throw new IllegalArgumentException("Invalid input for ln");
+                }
+                stack.push(Math.log(a)); // Tính ln(a)
+            }
+            else if (token.equals("sqrt")) {
+                // Nếu thiếu số, tự động lấy 0 làm giá trị (hoặc báo lỗi nếu cần)
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                if (a < 0) {
+                    throw new IllegalArgumentException("Cannot calculate square root of a negative number");
+                }
+                stack.push(Math.sqrt(a)); // Tính căn bậc 2
+            }
+            else if (token.equals("sin")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                stack.push(Math.sin(Math.toRadians(a))); // Tính sin với giá trị theo độ
+            } else if (token.equals("cos")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                stack.push(Math.cos(Math.toRadians(a))); // Tính cos với giá trị theo độ
+            } else if (token.equals("tan")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                stack.push(Math.tan(Math.toRadians(a))); // Tính tan với giá trị theo độ
+            } else if (token.equals("cot")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                if (a == 0) {
+                    throw new IllegalArgumentException("Cannot calculate cotangent of 0");
+                }
+                stack.push(1 / Math.tan(Math.toRadians(a))); // Tính cot với giá trị theo độ
+            }
+            else if (token.equals("%")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                stack.push(a / 100); // Tính phần trăm
+            } else if (token.equals("!")) {
+                double a = stack.isEmpty() ? 0 : stack.pop();
+                stack.push(factorial((int) a)); // Tính giai thừa
             }
         }
+
         return stack.pop();
     }
 
-    private boolean isNumeric(String str) {
+
+    private double factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+        }
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+
+
+
+    private boolean isNumeric(String token) {
         try {
-            Double.parseDouble(str);
+            Double.parseDouble(token);
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private int precedence(String operator) {
-        switch (operator) {
-            case "+":
-            case "-":
-                return 1;
-            case "X":
-            case "/":
-                return 2;
-            case "^":
-            case "ln":
-            case "log":
-                return 3; // Độ ưu tiên cao nhất
-            default:
-                return 0;
-        }
-    }
 
 
 

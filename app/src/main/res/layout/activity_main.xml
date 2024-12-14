@@ -324,11 +324,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_p_vuong"
-                    style="@style/actionButton_fun"
-                    android:text="@string/p_h_vuong"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_p_vuong"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="@string/p_h_vuong"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_eq_deg2"
                     style="@style/actionButton_fun"
@@ -358,11 +358,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_s_vuong"
-                    style="@style/actionButton_fun"
-                    android:text="@string/s_h_vuong"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_s_vuong"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="@string/s_h_vuong"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_CE_fun"
                     style="@style/actionButton_fun"
@@ -390,11 +390,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_p_hcn"
-                    style="@style/actionButton_fun"
-                    android:text="@string/p_hcn"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_p_hcn"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="@string/p_hcn"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_7_fun"
                     style="@style/actionNumber_fun"
@@ -423,11 +423,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_s_hcn"
-                    style="@style/actionButton_fun"
-                    android:text="S HCN"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_s_hcn"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="S HCN"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_4_fun"
                     style="@style/actionNumber_fun"
@@ -455,11 +455,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_p_tron"
-                    style="@style/actionButton_fun"
-                    android:text="@string/p_h_tron"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_p_tron"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="@string/p_h_tron"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_1_fun"
                     style="@style/actionNumber_fun"
@@ -487,11 +487,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_weight="1">
-                <Button
-                    android:id="@+id/btn_s_tron"
-                    style="@style/actionButton_fun"
-                    android:text="@string/s_h_tron"
-                    />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_s_tron"-->
+<!--                    style="@style/actionButton_fun"-->
+<!--                    android:text="@string/s_h_tron"-->
+<!--                    />-->
                 <Button
                     android:id="@+id/btn_0_fun"
                     style="@style/actionNumber_fun"
